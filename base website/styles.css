@@ -1,0 +1,316 @@
+/* Paleta de Colores del Gobierno de Chile */
+:root {
+    --primary-color: #006FB3;
+    --secondary-color: #FE6565;
+    --tertiary-color: #0A132D;
+    --accent-color: #A8B7C7;
+    --neutral-color: #EEEEEE;
+    --gray-dark: #4A4A4A;
+    --gray-medium: #8A8A8A;
+    --black-color: #111111;
+    --white-color: #FFFFFF;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--neutral-color);
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    background-color: var(--tertiary-color);
+    overflow: hidden;
+    position: relative; /* Para hacer que el menú Mi Perfil se ajuste correctamente */
+}
+
+nav a {
+    float: left;
+    display: block;
+    color: var(--white-color);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: var(--accent-color);
+    color: var(--black-color);
+}
+
+/* Posiciona "Mi Perfil" a la derecha en pantallas grandes */
+nav a#perfil {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-right: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 430px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav .menu-toggle {
+        display: block;
+        color: var(--white-color);
+        font-size: 24px;
+        cursor: pointer;
+        padding: 14px 16px;
+    }
+
+    nav a {
+        display: none;
+    }
+
+    nav a#perfil {
+        display: flex;
+        align-items: center;
+        position: relative;
+        right: auto;
+        padding-right: 0;
+    }
+
+    nav a#perfil::before {
+        content: '\f007'; /* Ícono de usuario de Font Awesome */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        margin-right: 5px;
+    }
+
+    /* Ocultar el texto de "Mi Perfil" en pantallas pequeñas */
+    nav a#perfil span {
+        display: none;
+    }
+
+    nav.active a {
+        display: block;
+        float: none;
+        padding: 10px;
+        text-align: left;
+        background-color: var(--tertiary-color);
+    }
+
+    nav a:hover {
+        background-color: var(--accent-color);
+    }
+}
+
+/* Estilos del Sidebar */
+#content-wrapper {
+    display: flex;
+    flex: 1;
+}
+
+#sidebar {
+    width: 20%;
+    background-color: var(--tertiary-color);
+    color: var(--white-color);
+    height: 100vh;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+#sidebar.active {
+    transform: translateX(0);
+}
+
+#sidebar .close-btn {
+    display: none;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+#sidebar a {
+    color: var(--white-color);
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+}
+
+#sidebar a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Responsive para Sidebar */
+@media (max-width: 430px) {
+    #content-wrapper {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: auto;
+        transform: translateX(-100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    #sidebar.active {
+        transform: translateX(0);
+    }
+
+    #sidebar .close-btn {
+        display: block;
+    }
+
+    #main {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .quick-access {
+        flex-direction: column;
+    }
+
+    .quick-access div {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+#main {
+    width: 80%;
+    padding: 20px;
+    background-color: var(--white-color);
+    transition: margin-left 0.3s ease;
+}
+
+/* Cuadros dentro del main */
+.section {
+    background-color: var(--white-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s ease-in-out; /* Añade animación */
+}
+
+.section:hover {
+    transform: translateY(-5px); /* Desplazamiento en hover */
+}
+
+/* Estilo para títulos dentro de los cuadros */
+.section h2 {
+    margin-top: 0;
+    color: var(--tertiary-color);
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+/* Estilo para el contenido de proyectos, finanzas, etc. */
+.projects,
+.finance {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Flex-wrap para mejor adaptabilidad */
+}
+
+.projects div,
+.finance div {
+    background-color: var(--neutral-color);
+    padding: 15px;
+    border-radius: 10px;
+    width: 48%; /* Mitad de ancho en pantallas grandes */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    margin-bottom: 20px;
+    transition: transform 0.2s ease-in-out; /* Animación */
+}
+
+.projects div:hover,
+.finance div:hover {
+    transform: scale(1.03); /* Aumento suave en hover */
+}
+
+/* Ajustes de textos dentro de los cuadros */
+.projects div h3,
+.finance div h3 {
+    font-size: 1.4rem;
+    color: var(--tertiary-color);
+    margin-bottom: 10px;
+}
+
+.projects div p,
+.finance div p {
+    font-size: 1rem;
+    color: var(--gray-dark);
+    line-height: 1.5;
+}
+
+/* Botones de acceso rápido */
+.quick-access {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.quick-access div {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 22%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.quick-access div:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive: Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    #main {
+        width: 100%; /* Asegura que el contenido ocupe el 100% del ancho */
+        padding: 10px;
+    }
+
+    .projects div,
+    .finance div {
+        width: 100%; /* Cuadros a ancho completo en pantallas pequeñas */
+        margin-bottom: 15px;
+    }
+
+    .quick-access {
+        flex-direction: column; /* Disposición en columna */
+        align-items: center;
+    }
+
+    .quick-access div {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
